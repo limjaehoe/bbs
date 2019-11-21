@@ -51,6 +51,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
+				<li><a href="admin.jsp">관리자</a></li>
 			</ul>
 			<%
 				if(userID == null){
@@ -119,7 +120,7 @@
 						
 						<tr>
 							<td> 내용 </td>
-							<td colspan="2" style="min-height:200px; text-align:left;"><%= bbs.getBbsContent().replaceAll(" ","&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
+							<td colspan="2" style="min-height:200px; text-align:left;"><%= bbs.getBbsContent() %></td>
 						</tr>
 						
 					</tbdoy>

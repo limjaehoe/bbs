@@ -38,6 +38,7 @@
 			<ul class="nav navbar-nav">
 				<li  class="active"><a href="main.jsp">메인</a></li>
 				<li><a href="bbs.jsp">게시판</a></li>
+				<li><a href="admin.jsp">관리자</a></li>
 			</ul>
 			<%
 				if(userID == null){

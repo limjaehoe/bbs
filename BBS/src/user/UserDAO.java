@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import bbs.Bbs;
 
 public class UserDAO {
 	
@@ -67,4 +70,30 @@ public class UserDAO {
 		return -1;
 		
 	}
+	
+	
+	public ArrayList<User> getList(){
+		String SQL = "SELECT * FROM USER limit 10";
+		ArrayList<User> list = new ArrayList<User>();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			//pstmt.setInt(1,  getNext() - (pageNumber -1)*10);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				User user = new User();
+				user.setUserID(rs.getString(1));
+				user.setUserPassword(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserGender(rs.getString(4));
+				user.setUserEmail(rs.getString(5));
+				list.add(user);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list; //µ•¿Ã≈Õ ø¿»ﬁ
+	}
+	
+	
 }

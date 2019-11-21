@@ -34,6 +34,14 @@
 		if(result ==1){
 			session.setAttribute("userID", user.getUserID());
 			
+			//관리자 페이지 이동
+			if(user.getUserID().equals("777")){
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("location.href = 'admin.jsp'");
+				script.println("</script>");
+			}
+			
 			
 			PrintWriter script = response.getWriter();
 			script.println("<script>");

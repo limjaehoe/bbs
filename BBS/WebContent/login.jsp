@@ -29,6 +29,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
 				<li><a href="bbs.jsp">게시판</a></li>
+				<li><a href="admin.jsp">관리자</a></li>
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
