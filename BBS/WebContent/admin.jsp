@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 pageEncoding="EUC-KR"%>
+<%@ page import="user.User" %>
+<%@ page import="user.UserDAO" %>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +20,7 @@ pageEncoding="EUC-KR"%>
 	}
 </style>
 </head>
-<body> 
+<body>
 	<%
 		String userID = null;
 		if(session.getAttribute("userID")!=null){
@@ -39,8 +41,7 @@ pageEncoding="EUC-KR"%>
 			script.println("</script>");
 		}
 	%>
-
-
+	
 	<nav class ="navbar navbar-default">
 		<div class="navbar-header">
 		
@@ -60,8 +61,8 @@ pageEncoding="EUC-KR"%>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
-				<li class="active"><a href="bbs.jsp">게시판</a></li>
-				<li><a href="admin.jsp">관리자</a></li>
+				<li ><a href="bbs.jsp">게시판</a></li>
+				<li class="active"><a href="admin.jsp">관리자</a></li>
 			</ul>
 			<%
 				if(userID == null){
@@ -110,48 +111,34 @@ pageEncoding="EUC-KR"%>
 					<th style="background-color: #eeeeee; text-align:center;">번호</th>
 					<th style="background-color: #eeeeee; text-align:center;">제목</th>
 					<th style="background-color: #eeeeee; text-align:center;">작성자</th>
-					<th style="background-color: #eeeeee; text-align:center;">작성일</th>
+					<th style="background-color: #eeeeee; text-align:center;">작성일4</th>
 				</tr>	
 				</thead>
+				
+				
 				<tbdoy>
 					<%
-						BbsDAO bbsDAO = new BbsDAO();
-						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
-						for(int i =0; i<list.size(); i++){
+						UserDAO userDAO = new UserDAO();
+						ArrayList<User> list = userDAO.getList();
+						for(int i=0; i<list.size(); i++){
 					%>
 						<tr>
-							<td><%= list.get(i).getBbsID() %></td>
-							<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
 							<td><%= list.get(i).getUserID() %> </td>
-							<td><%= list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11,13)+"시" + list.get(i).getBbsDate().substring(14,16)+"분" %> </td>
 						</tr>
+				
 					<%
 						}
 					%>
-				
 				</tbdoy>
 			</table>
 			
-			<%
-				if(pageNumber != 1){
-			%>
+	
 			
-				<a href="bbs.jsp?pageNumber=<%=pageNumber-1%>" class="btn btn-success btn-arraw-left">이전</a>
-				
-			<%
-				} if(bbsDAO.nextPage(pageNumber+1)){
-			%>
 			
-				<a href="bbs.jsp?pageNumber=<%=pageNumber+1%>" class="btn btn-success btn-arraw-left">다음</a>
-				
-			<%
-				}
-			%>
-			
-			<a href="write.jsp" class="btn btn-primay pull-right">글쓰기</a>
 		</div>
 	</div>
-	
+
+
 	
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
