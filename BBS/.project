@@ -28,4 +28,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>BBS</name>
+			<type>2</type>
+			<location>C:/jsp/download/apache-tomcat-8.5.45/work/Catalina/localhost/BBS</location>
+		</link>
+	</linkedResources>
 </projectDescription>

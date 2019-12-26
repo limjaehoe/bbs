@@ -3,7 +3,10 @@ pageEncoding="EUC-KR"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="bbs.BbsDAO"%>
 <%@ page import="bbs.Bbs"%>
+<%@ page import="bbs.Bbs"%>
 <%@ page import="java.util.ArrayList"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,6 +118,9 @@ pageEncoding="EUC-KR"%>
 				</thead>
 				<tbdoy>
 					<%
+					
+					
+					
 						BbsDAO bbsDAO = new BbsDAO();
 						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
 						for(int i =0; i<list.size(); i++){

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 pageEncoding="EUC-KR"%>
+<%@ page import="bbs.BbsDAO"%>
+<%@ page import="bbs.Bbs"%>
 <%@ page import="user.User" %>
 <%@ page import="user.UserDAO" %>
 <%@ page import="java.io.PrintWriter"%>
@@ -26,11 +28,12 @@ pageEncoding="EUC-KR"%>
 		if(session.getAttribute("userID")!=null){
 			userID = (String) session.getAttribute("userID");
 		}
-	
+		/*
 		int pageNumber=1;
 		if(request.getParameter("pageNumber")!=null){
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
+		*/
 		
 		//로그인하면 보세요!!!
 		if(session.getAttribute("userID")==null){
@@ -108,39 +111,40 @@ pageEncoding="EUC-KR"%>
 			<table class="table table-striped" style="text-align:center; border:1px solod #ddddddd">
 				<thead>
 				<tr>
-					<th style="background-color: #eeeeee; text-align:center;">번호</th>
-					<th style="background-color: #eeeeee; text-align:center;">제목</th>
-					<th style="background-color: #eeeeee; text-align:center;">작성자</th>
-					<th style="background-color: #eeeeee; text-align:center;">작성일4</th>
+					<th style="background-color: #eeeeee; text-align:center;">아이디</th>
+					<th style="background-color: #eeeeee; text-align:center;">비번</th>
+					<th style="background-color: #eeeeee; text-align:center;">이름</th>
+					<th style="background-color: #eeeeee; text-align:center;">성별</th>
+					<th style="background-color: #eeeeee; text-align:center;">이메일</th>
 				</tr>	
 				</thead>
 				
 				
 				<tbdoy>
 					<%
-						UserDAO userDAO = new UserDAO();
-						ArrayList<User> list = userDAO.getList();
+						
+						UserDAO userdao = new UserDAO();
+						ArrayList<User> list = userdao.getList();
+						//ArrayList<User> list = userdao.getList();
 						for(int i=0; i<list.size(); i++){
 					%>
 						<tr>
 							<td><%= list.get(i).getUserID() %> </td>
+							<td><%= list.get(i).getUserPassword() %> </td>
+							<td><%= list.get(i).getUserName() %> </td>
+							<td><%= list.get(i).getUserGender() %> </td>
+							<td><%= list.size() %> </td>
+							
 						</tr>
-				
 					<%
 						}
 					%>
+				
 				</tbdoy>
 			</table>
-			
-	
-			
-			
 		</div>
 	</div>
 
-
-	
-	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>

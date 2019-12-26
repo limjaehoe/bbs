@@ -11,19 +11,17 @@
 <title>파워FC 웹 사이트</title>
 </head>
 <body>
+
 	<%
 		String userID = null;
 		if(session.getAttribute("userID")!=null){
 			userID = (String) session.getAttribute("userID");
-		}
-		
-		
+		}		
 	%>
 
 
 	<nav class ="navbar navbar-default">
 		<div class="navbar-header">
-		
 			<button type = "button" class = "navbar-toggle collapsed"
 			  data-toggle = "collapse" data-target = "#bs-example-navbar-collapse-1" aria-expanded = "false">
 				<span class="icon-bar"></span>
@@ -42,7 +40,6 @@
 			</ul>
 			<%
 				if(userID == null){
-					
 			%>
 			
 			<ul class="nav navbar-nav navbar-right">

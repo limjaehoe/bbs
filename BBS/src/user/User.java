@@ -11,6 +11,27 @@ public class User {
 	public User() {
 	} 
 	
+	
+	
+	public User(String userID, String userPassword, String userName, String userGender, String userEmail) {
+		super();
+		this.userID = userID;
+		this.userPassword = userPassword;
+		this.userName = userName;
+		this.userGender = userGender;
+		this.userEmail = userEmail;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", userPassword=" + userPassword + ", userName=" + userName + ", userGender="
+				+ userGender + ", userEmail=" + userEmail + "]";
+	}
+
+
+
 	public String getUserID() {
 		return userID;
 	}

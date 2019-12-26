@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.io.IOException;
+
 
 import bbs.Bbs;
 
@@ -73,12 +75,11 @@ public class UserDAO {
 	
 	
 	public ArrayList<User> getList(){
-		String SQL = "SELECT * FROM USER limit 10";
+		String SQL = "SELECT * FROM USER";
 		ArrayList<User> list = new ArrayList<User>();
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			//pstmt.setInt(1,  getNext() - (pageNumber -1)*10);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				User user = new User();
@@ -88,12 +89,53 @@ public class UserDAO {
 				user.setUserGender(rs.getString(4));
 				user.setUserEmail(rs.getString(5));
 				list.add(user);
+				
+			}
+			return list;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list; 
+	}
+	
+	/*
+	public ArrayList<User> getList2(){
+		String SQL = "SELECT * FROM USER";
+		ArrayList<User> list = new ArrayList<User>();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			//pstmt.setInt(1,  getNext() - (pageNumber -1)*10);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				
+				User bbs = new User();
+				bbs.setUserID(rs.getString(1));
+				bbs.setUserPassword(rs.getString(2));
+				bbs.setUserName(rs.getString(3));
+				bbs.setUserGender(rs.getString(4));
+				bbs.setUserEmail(rs.getString(5));
+				list.add(bbs);
+				
+			
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return list; //µ•¿Ã≈Õ ø¿»ﬁ
+		return list; 
+		
 	}
+	*/
+			/*
+			String id = rs.getString("userID");
+			String password = rs.getString("userPassword");
+			String name = rs.getString("userName");
+			String gender = rs.getString("userGender");
+			String email = rs.getString("userEmail");
+			
+			User temp = new User(id,password,name,gender,email);
+			list.add(temp);
+			*/
 	
-	
+
 }
