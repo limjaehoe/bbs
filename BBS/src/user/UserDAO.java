@@ -52,10 +52,24 @@ public class UserDAO {
 		return -2;
 	}
 	
+	public int getjoinNext() {
+		String SQL = "SELECT sn_seq FROM User ORDER BY sn_seq DESC";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1) + 1;
+			}
+			return 1; //첫 번째 게시물인 경우
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터 오휴
+	}
 	
 	public int join(User user) {
 		
-		String SQL = "INSERT INTO USER VALUES (?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO USER VALUES (?, ?, ?, ?, ?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, user.getUserID());
@@ -63,6 +77,7 @@ public class UserDAO {
 			pstmt.setString(3, user.getUserName());
 			pstmt.setString(4, user.getUserGender());
 			pstmt.setString(5, user.getUserEmail());
+			pstmt.setInt(6, getjoinNext());
 			return pstmt.executeUpdate();
 			
 			
@@ -74,12 +89,13 @@ public class UserDAO {
 	}
 	
 	
-	public ArrayList<User> getList(){
-		String SQL = "SELECT * FROM USER";
+	public ArrayList<User> getList(int pageNumber){
+		String SQL = "SELECT * FROM USER where sn_seq < ? ORDER BY sn_seq DESC limit 10";
 		ArrayList<User> list = new ArrayList<User>();
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,  getjoinNext() - (pageNumber -1)*10);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				User user = new User();
@@ -98,44 +114,42 @@ public class UserDAO {
 		return list; 
 	}
 	
-	/*
-	public ArrayList<User> getList2(){
-		String SQL = "SELECT * FROM USER";
-		ArrayList<User> list = new ArrayList<User>();
-		
+	public boolean nextPage(int pageNumber){
+		String SQL = "SELECT * FROM User WHERE sn_seq < ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			//pstmt.setInt(1,  getNext() - (pageNumber -1)*10);
+			pstmt.setInt(1,  getjoinNext() - (pageNumber -1)*10);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				
-				User bbs = new User();
-				bbs.setUserID(rs.getString(1));
-				bbs.setUserPassword(rs.getString(2));
-				bbs.setUserName(rs.getString(3));
-				bbs.setUserGender(rs.getString(4));
-				bbs.setUserEmail(rs.getString(5));
-				list.add(bbs);
-				
-			
+			if(rs.next()) {
+				return true;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return list; 
-		
+		return false; //데이터 오휴
 	}
-	*/
-			/*
-			String id = rs.getString("userID");
-			String password = rs.getString("userPassword");
-			String name = rs.getString("userName");
-			String gender = rs.getString("userGender");
-			String email = rs.getString("userEmail");
-			
-			User temp = new User(id,password,name,gender,email);
-			list.add(temp);
-			*/
 	
+	
+	public User getUser(String sn_seq) {
+		String SQL = "SELECT * FROM User WHERE userID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1,  sn_seq);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				User user = new User();
+				user.setUserID(rs.getString(1));
+				user.setUserPassword(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserGender(rs.getString(4));
+				user.setUserEmail(rs.getString(5));
+				user.setSn_seq(rs.getInt(6));
+				return user;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null; //데이터 오휴
+	}
 
 }

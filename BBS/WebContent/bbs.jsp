@@ -127,7 +127,7 @@ pageEncoding="EUC-KR"%>
 					%>
 						<tr>
 							<td><%= list.get(i).getBbsID() %></td>
-							<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
+							<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"> <%= list.get(i).getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
 							<td><%= list.get(i).getUserID() %> </td>
 							<td><%= list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11,13)+"½Ã" + list.get(i).getBbsDate().substring(14,16)+"ºÐ" %> </td>
 						</tr>

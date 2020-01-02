@@ -76,7 +76,7 @@ public class BbsDAO {
 	}
 	
 	public ArrayList<Bbs> getList(int pageNumber){
-		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 11";
+		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
 		//String SQL = "SELECT * FROM USER";
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		

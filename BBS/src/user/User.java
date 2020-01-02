@@ -7,6 +7,7 @@ public class User {
 	private String userName;
 	private String userGender;
 	private String userEmail;
+	private int sn_seq;
 	
 	public User() {
 	} 
@@ -28,6 +29,18 @@ public class User {
 	public String toString() {
 		return "User [userID=" + userID + ", userPassword=" + userPassword + ", userName=" + userName + ", userGender="
 				+ userGender + ", userEmail=" + userEmail + "]";
+	}
+
+
+
+	public int getSn_seq() {
+		return sn_seq;
+	}
+
+
+
+	public void setSn_seq(int sn_seq) {
+		this.sn_seq = sn_seq;
 	}
 
 
