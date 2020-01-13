@@ -73,6 +73,7 @@ pageEncoding="EUC-KR"%>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
+				<li><a href="estimate.jsp">보험비교견적</a></li>
 				<li ><a href="bbs.jsp">게시판</a></li>
 				<li class="active"><a href="admin.jsp">관리자</a></li>
 			</ul>
@@ -117,9 +118,11 @@ pageEncoding="EUC-KR"%>
 	
 	<div class="container">
 		<div class="row">
+		 <form method="post" action="adminDeleteAction.jsp">
 			<table class="table table-striped" style="text-align:center; border:1px solod #ddddddd">
 				<thead>
 				<tr>
+					<!--<th style="background-color: #eeeeee; text-align:center;"><input type="checkbox" name="_selected_all_"></th> -->
 					<th style="background-color: #eeeeee; text-align:center;">아이디</th>
 					<th style="background-color: #eeeeee; text-align:center;">비번</th>
 					<th style="background-color: #eeeeee; text-align:center;">이름</th>
@@ -137,11 +140,12 @@ pageEncoding="EUC-KR"%>
 						for(int i=0; i<list.size(); i++){
 					%>
 						<tr>
-							<td><a href="adminUpdate.jsp?sn_seq=<%= list.get(i).getUserID() %>"> <%= list.get(i).getUserID() %> </td>
-							<td><%= list.get(i).getUserPassword() %> </td>
-							<td><%= list.get(i).getUserName() %> </td>
-							<td><%= list.get(i).getUserGender() %> </td>
-							<td><%= list.size() %> </td>
+							<!--  <td><input name="chkbox" type="checkbox" value="<%= list.get(i).getUserID() %>"></td>-->
+							<td><a href="adminUpdate.jsp?userID=<%= list.get(i).getUserID() %>"> <%= list.get(i).getUserID() %> </td>
+							<td><a href="adminUpdate.jsp?userID=<%= list.get(i).getUserID() %>"> <%= list.get(i).getUserPassword() %> </td>
+							<td><a href="adminUpdate.jsp?userID=<%= list.get(i).getUserID() %>"> <%= list.get(i).getUserName() %> </td>
+							<td><a href="adminUpdate.jsp?userID=<%= list.get(i).getUserID() %>"> <%= list.get(i).getUserGender() %> </td>
+							<td><a href="adminUpdate.jsp?userID=<%= list.get(i).getUserID() %>"> <%= list.size() %> </td>
 							
 						</tr>
 					<%
@@ -166,8 +170,8 @@ pageEncoding="EUC-KR"%>
 			<%
 				}
 			%>
-			
-			
+			<!-- <input type="submit" class="btn btn-primary" value="삭제"> -->
+			</form>
 		</div>
 	</div>
 

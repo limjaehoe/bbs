@@ -35,6 +35,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li  class="active"><a href="main.jsp">메인</a></li>
+				<li><a href="estimate.jsp">보험비교견적</a></li>
 				<li><a href="bbs.jsp">게시판</a></li>
 				<li><a href="admin.jsp">관리자</a></li>
 			</ul>
@@ -77,6 +78,8 @@
 		
 	</nav>
 	
+	
+    
 	<div class="container">
 		<div class = "jumbotron">
 			<div class="container">
@@ -93,6 +96,7 @@
 		</div>
 	</div>
 	
+
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>

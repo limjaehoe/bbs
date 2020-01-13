@@ -130,11 +130,11 @@ public class UserDAO {
 	}
 	
 	
-	public User getUser(String sn_seq) {
+	public User getUser(String userID) {
 		String SQL = "SELECT * FROM User WHERE userID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1,  sn_seq);
+			pstmt.setString(1,  userID);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				User user = new User();
@@ -150,6 +150,40 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return null; //µ•¿Ã≈Õ ø¿»ﬁ
+	}
+	
+	public int update(String userID, String userPassword, String userName, String userGender, String userEmail) {
+		
+		String SQL = "UPDATE user SET userPassword = ?, userName = ?, userGender = ?, userEmail = ? WHERE userID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+			pstmt.setString(1, userPassword);
+			pstmt.setString(2, userName);
+			pstmt.setString(3, userGender);
+			pstmt.setString(4, userEmail);
+			pstmt.setString(5, userID);
+			return pstmt.executeUpdate(); 
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int delete(String userID) {
+		
+		String SQL = "DELETE FROM user where userID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+			pstmt.setString(1, userID);
+			return pstmt.executeUpdate(); 
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 }

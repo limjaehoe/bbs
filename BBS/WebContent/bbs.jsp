@@ -63,6 +63,7 @@ pageEncoding="EUC-KR"%>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
+				<li><a href="estimate.jsp">보험비교견적</a></li>
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
 				<li><a href="admin.jsp">관리자</a></li>
 			</ul>
@@ -110,6 +111,7 @@ pageEncoding="EUC-KR"%>
 			<table class="table table-striped" style="text-align:center; border:1px solod #ddddddd">
 				<thead>
 				<tr>
+					
 					<th style="background-color: #eeeeee; text-align:center;">번호</th>
 					<th style="background-color: #eeeeee; text-align:center;">제목</th>
 					<th style="background-color: #eeeeee; text-align:center;">작성자</th>
@@ -126,7 +128,8 @@ pageEncoding="EUC-KR"%>
 						for(int i =0; i<list.size(); i++){
 					%>
 						<tr>
-							<td><%= list.get(i).getBbsID() %></td>
+							
+							<td> <%= list.get(i).getBbsID() %></td>
 							<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"> <%= list.get(i).getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
 							<td><%= list.get(i).getUserID() %> </td>
 							<td><%= list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11,13)+"시" + list.get(i).getBbsDate().substring(14,16)+"분" %> </td>
