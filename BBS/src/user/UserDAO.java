@@ -138,12 +138,13 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				User user = new User();
-				user.setUserID(rs.getString(1));
-				user.setUserPassword(rs.getString(2));
-				user.setUserName(rs.getString(3));
-				user.setUserGender(rs.getString(4));
-				user.setUserEmail(rs.getString(5));
-				user.setSn_seq(rs.getInt(6));
+				user.setSn_seq(rs.getInt(1));
+				user.setUserID(rs.getString(2));
+				user.setUserPassword(rs.getString(3));
+				user.setUserName(rs.getString(4));
+				user.setUserGender(rs.getString(5));
+				user.setUserEmail(rs.getString(6));
+				
 				return user;
 			}
 		}catch(Exception e) {

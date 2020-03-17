@@ -56,7 +56,7 @@ pageEncoding="EUC-KR"%>
 			</button>
 			
 			
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a> 
+			<a class="navbar-brand" href="main.jsp">파워FC 웹 사이트</a> 
 			
 		</div>
 		

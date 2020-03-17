@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<% request.setCharacterEncoding("utf-8");%>
- 
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="user.User" %>
 <%@ page import="user.UserDAO" %>
@@ -13,7 +11,7 @@
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>íŒŒì›ŒFC ì›¹ ì‚¬ì´íŠ¸</title>
+<title>ÆÄ¿öFC À¥ »çÀÌÆ®</title>
 </head>
 <body>
 	<%
@@ -24,33 +22,35 @@
 		
 	
 		
-		//ë¡œê·¸ì¸í•˜ë©´ ë³´ì„¸ìš”!!!
+		//·Î±×ÀÎÇÏ¸é º¸¼¼¿ä!!!
 		if(session.getAttribute("userID")==null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('ë¡œê·¸ì¸ì„ í•´ì£¼ì„¸ìš”.')");
+			script.println("alert('·Î±×ÀÎÀ» ÇØÁÖ¼¼¿ä.')");
 			script.println("location.href = 'login.jsp'");
 			script.println("</script>");
 		}
 		
-		//ê´€ë¦¬ì ì•„ì´ë”” 777ë§Œ ë“¤ì–´ì˜¬ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+		//°ü¸®ÀÚ ¾ÆÀÌµğ 777¸¸ µé¾î¿Ã ¼ö ÀÖ½À´Ï´Ù.
 		if(!userID.equals("777")){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('ê´€ë¦¬ì ì•„ì´ë””ê°€ ì•„ë‹™ë‹ˆë‹¤.')");
+			script.println("alert('°ü¸®ÀÚ ¾ÆÀÌµğ°¡ ¾Æ´Õ´Ï´Ù.')");
 			script.println("location.href = 'main.jsp'");
 			script.println("</script>");
 		}
 		
 		
-		/////////////ë‘ê°œê°€ ì„¸íŠ¸.
+		/////////////µÎ°³°¡ ¼¼Æ®.
 		String userID_temp =null;
 		if(request.getParameter("userID")!=null){
 			userID_temp = request.getParameter("userID");
 		}
 				
 		User user = new UserDAO().getUser(userID_temp);
-		
+		System.out.println(userID_temp);
+		System.out.println(user.getUserID());
+
 	%>
 
 
@@ -63,25 +63,24 @@
 				<span class="icon-bar"></span>
 			</button>
 			
-			
-			<a class="navbar-brand" href="main.jsp">JSP ê²Œì‹œíŒ ì›¹ ì‚¬ì´íŠ¸</a> 
+			<a class="navbar-brand" href="main.jsp">°ü¸®ÀÚ ÆäÀÌÁö</a> 
 			
 		</div>
 		
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">ë©”ì¸</a></li>
-				<li><a href="bbs.jsp">ê²Œì‹œíŒ</a></li>
-				<li class="active"><a href="admin.jsp">ê´€ë¦¬ì</a></li>
+				<li class="active"><a href="admin.jsp">ÆÄ¿öFc »ç¿ëÀÚ</a></li>
+				<li><a href="adminPlanSelect.jsp">ÇÃ·£ °Ë»ö</a></li>
+				
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
-						 role="button" aria-haspopup=true" aria-expanded="false">íšŒì›ê´€ë¦¬<span class="caret"></span></a>
+						 role="button" aria-haspopup=true" aria-expanded="false">È¸¿ø°ü¸®<span class="caret"></span></a>
 						 
 						 <ul class ="dropdown-menu">
-						 	<li><a href="logoutAction.jsp">ë¡œê·¸ì•„ì›ƒ</a></li>
+						 	<li><a href="logoutAction.jsp">·Î±×¾Æ¿ô</a></li>
 						 </ul>				
 					</li>
 			</ul>
@@ -95,40 +94,40 @@
 				<table class="table table-striped" style="text-align:center; border:1px solod #ddddddd">
 					<thead>
 					<tr>
-						<th colspan="2" style="background-color: #eeeeee; text-align:center;">íšŒì› ì •ë³´ ìˆ˜ì •</th>
+						<th colspan="2" style="background-color: #eeeeee; text-align:center;">È¸¿ø Á¤º¸ ¼öÁ¤</th>
 					</tr>	
 					</thead>
 					<tbdoy>
 						<tr>
-							<td> ì•„ì´ë””  </td>
-							<td><input type="text" class="form-control" placeholder="ê¸€ ì œëª©" name="userID" maxlength="50" value="<%= user.getUserID() %>"></td>
+							<td> ¾ÆÀÌµğ  </td>
+							<td><input type="text" class="form-control" placeholder="±Û Á¦¸ñ" name="userID" maxlength="50" value="<%= user.getUserID() %>"></td>
 						</tr>
 						
 						<tr>
-							<td> ë¹„ë°€ë²ˆí˜¸  </td>
-							<td><input type="text" class="form-control" placeholder="ê¸€ ì œëª©" name="userPassword" maxlength="50" value="<%= user.getUserPassword() %>"> </td>
+							<td> ºñ¹Ğ¹øÈ£  </td>
+							<td><input type="text" class="form-control" placeholder="±Û Á¦¸ñ" name="userPassword" maxlength="50" value="<%= user.getUserPassword() %>"> </td>
 						</tr>
 						
 						<tr>
-							<td> ì´ë¦„  </td>
-							<td><input type="text" class="form-control" placeholder="ê¸€ ì œëª©" name="userName" maxlength="50" value="<%= user.getUserName() %>"> </td>
+							<td> ÀÌ¸§  </td>
+							<td><input type="text" class="form-control" placeholder="±Û Á¦¸ñ" name="userName" maxlength="50" value="<%= user.getUserName() %>"> </td>
 						</tr>
 						
 						<tr>
-							<td> ì„±ë³„  </td>
-							<td><input type="text" class="form-control" placeholder="ê¸€ ì œëª©" name="userGender" maxlength="50" value="<%= user.getUserGender() %>"> </td>
+							<td> ¼ºº°  </td>
+							<td><input type="text" class="form-control" placeholder="±Û Á¦¸ñ" name="userGender" maxlength="50" value="<%= user.getUserGender() %>"> </td>
 						</tr>
 						
 						<tr>
-							<td> ì´ë©”ì¼  </td>
-							<td><input type="text" class="form-control" placeholder="ê¸€ ì œëª©" name="userEmail" maxlength="50" value="<%= user.getUserEmail() %>"> </td>
+							<td> ÀÌ¸ŞÀÏ  </td>
+							<td><input type="text" class="form-control" placeholder="±Û Á¦¸ñ" name="userEmail" maxlength="50" value="<%= user.getUserEmail() %>"> </td>
 						</tr>
 						
 					</tbdoy>
 				</table>
-				<a href="admin.jsp" class="btn btn-primary">ëª©ë¡</a>
-				<a onclick="return confirm('ì •ë§ë¡œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')" href="adminDeleteAction.jsp?userID=<%= user.getUserID() %>" class="btn btn-primary">ì‚­ì œ</a>
-				<input type="submit" class="btn btn-primary" value="ìˆ˜ì •">
+				<a href="admin.jsp" class="btn btn-primary">¸ñ·Ï</a>
+				<a onclick="return confirm('Á¤¸»·Î »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')" href="adminDeleteAction.jsp?userID=<%= user.getUserID() %>" class="btn btn-primary">»èÁ¦</a>
+				<input type="submit" class="btn btn-primary" value="¼öÁ¤">
 				
 			</form>
 		</div>

@@ -66,16 +66,18 @@ pageEncoding="EUC-KR"%>
 			</button>
 			
 			
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a> 
+			<a class="navbar-brand" href="main.jsp">관리자 페이지</a> 
 			
 		</div>
 		
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">메인</a></li>
-				<li><a href="estimate.jsp">보험비교견적</a></li>
-				<li ><a href="bbs.jsp">게시판</a></li>
-				<li class="active"><a href="admin.jsp">관리자</a></li>
+				<li class="active"><a href="admin.jsp">파워Fc 사용자</a></li>
+				<li><a href="adminPlanSelect.jsp">플랜 검색</a></li>
+				<li><a href="adminPlanUpload.jsp">플랜 업로드</a></li>
+				<li><a href="adminPlanDeleteCompany.jsp">플랜 삭제(회사)</a></li>
+				<li><a href="adminPlanDeleteGubun.jsp">플랜 삭제(상품)</a></li>
+				<li><a href="adminPlanDeleteAge.jsp">플랜 삭제(연령대)</a></li>
 			</ul>
 			<%
 				if(userID == null){
